@@ -26,8 +26,8 @@ class ProductosRecord extends FirestoreRecord {
   bool hasDescripcion() => _descripcion != null;
 
   // "precio" field.
-  int? _precio;
-  int get precio => _precio ?? 0;
+  num? _precio;
+  num get precio => _precio ?? 0;
   bool hasPrecio() => _precio != null;
 
   // "imagenUrl" field.
@@ -50,20 +50,20 @@ class ProductosRecord extends FirestoreRecord {
   DateTime? get creadoEn => _creadoEn;
   bool hasCreadoEn() => _creadoEn != null;
 
-  // "DocumentReferenc" field.
-  DocumentReference? _documentReferenc;
-  DocumentReference? get documentReferenc => _documentReferenc;
-  bool hasDocumentReferenc() => _documentReferenc != null;
+  // "creadoPorRef" field.
+  DocumentReference? _creadoPorRef;
+  DocumentReference? get creadoPorRef => _creadoPorRef;
+  bool hasCreadoPorRef() => _creadoPorRef != null;
 
   void _initializeFields() {
     _nombre = snapshotData['nombre'] as String?;
     _descripcion = snapshotData['descripcion'] as String?;
-    _precio = castToType<int>(snapshotData['precio']);
+    _precio = castToType<num>(snapshotData['precio']);
     _imagenUrl = snapshotData['imagenUrl'] as String?;
     _disponible = snapshotData['disponible'] as bool?;
     _categoriaRef = snapshotData['categoriaRef'] as DocumentReference?;
     _creadoEn = snapshotData['creadoEn'] as DateTime?;
-    _documentReferenc = snapshotData['DocumentReferenc'] as DocumentReference?;
+    _creadoPorRef = snapshotData['creadoPorRef'] as DocumentReference?;
   }
 
   static CollectionReference get collection =>
@@ -102,12 +102,12 @@ class ProductosRecord extends FirestoreRecord {
 Map<String, dynamic> createProductosRecordData({
   String? nombre,
   String? descripcion,
-  int? precio,
+  num? precio,
   String? imagenUrl,
   bool? disponible,
   DocumentReference? categoriaRef,
   DateTime? creadoEn,
-  DocumentReference? documentReferenc,
+  DocumentReference? creadoPorRef,
 }) {
   final firestoreData = mapToFirestore(
     <String, dynamic>{
@@ -118,7 +118,7 @@ Map<String, dynamic> createProductosRecordData({
       'disponible': disponible,
       'categoriaRef': categoriaRef,
       'creadoEn': creadoEn,
-      'DocumentReferenc': documentReferenc,
+      'creadoPorRef': creadoPorRef,
     }.withoutNulls,
   );
 
@@ -137,7 +137,7 @@ class ProductosRecordDocumentEquality implements Equality<ProductosRecord> {
         e1?.disponible == e2?.disponible &&
         e1?.categoriaRef == e2?.categoriaRef &&
         e1?.creadoEn == e2?.creadoEn &&
-        e1?.documentReferenc == e2?.documentReferenc;
+        e1?.creadoPorRef == e2?.creadoPorRef;
   }
 
   @override
@@ -149,7 +149,7 @@ class ProductosRecordDocumentEquality implements Equality<ProductosRecord> {
         e?.disponible,
         e?.categoriaRef,
         e?.creadoEn,
-        e?.documentReferenc
+        e?.creadoPorRef
       ]);
 
   @override

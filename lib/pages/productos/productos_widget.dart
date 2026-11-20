@@ -302,7 +302,7 @@ class _ProductosWidgetState extends State<ProductosWidget> {
                                       crossAxisCount: 2,
                                       crossAxisSpacing: 16.0,
                                       mainAxisSpacing: 16.0,
-                                      childAspectRatio: 0.62,
+                                      childAspectRatio: 0.5,
                                     ),
                                     primary: false,
                                     shrinkWrap: true,
@@ -477,6 +477,15 @@ class _ProductosWidgetState extends State<ProductosWidget> {
                                                                 .bodyMedium
                                                                 .fontStyle,
                                                       ),
+                                            ),
+                                            Text(
+                                              'Creado: ${gridProductosRecord.creadoEn ?? 'Sin fecha'}',
+                                            ),
+                                            Text(
+                                              'Categoría: ${gridProductosRecord.categoriaRef?.path ?? 'Sin referencia'}',
+                                            ),
+                                            Text(
+                                              'Usuario: ${gridProductosRecord.creadoPorRef?.path ?? 'Sin referencia'}',
                                             ),
                                           ],
                                         ),

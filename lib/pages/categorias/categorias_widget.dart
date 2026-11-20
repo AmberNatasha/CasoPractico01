@@ -139,9 +139,7 @@ class _CategoriasWidgetState extends State<CategoriasWidget> {
                         ],
                       ),
                       StreamBuilder<List<UsuariosRecord>>(
-                        stream: queryUsuariosRecord(
-                          singleRecord: true,
-                        ),
+                        stream: queryUsuariosRecord(),
                         builder: (context, snapshot) {
                           // Customize what your widget looks like when it's loading.
                           if (!snapshot.hasData) {
@@ -174,7 +172,7 @@ class _CategoriasWidgetState extends State<CategoriasWidget> {
                             crossAxisAlignment: CrossAxisAlignment.center,
                             children: [
                               Text(
-                                'Hello',
+                                columnUsuariosRecord?.nombre ?? 'Usuario',
                                 style: FlutterFlowTheme.of(context)
                                     .headlineSmall
                                     .override(
@@ -194,7 +192,7 @@ class _CategoriasWidgetState extends State<CategoriasWidget> {
                                     ),
                               ),
                               Text(
-                                'Encuentra lo mejor para tu cuidado',
+                                columnUsuariosRecord?.correo ?? '',
                                 style: FlutterFlowTheme.of(context)
                                     .bodyMedium
                                     .override(
@@ -258,15 +256,7 @@ class _CategoriasWidgetState extends State<CategoriasWidget> {
                             crossAxisAlignment: CrossAxisAlignment.stretch,
                             children: [
                               StreamBuilder<List<CategoriasRecord>>(
-                                stream: queryCategoriasRecord(
-                                  queryBuilder: (categoriasRecord) =>
-                                      categoriasRecord
-                                          .where(
-                                            'activa',
-                                            isEqualTo: true,
-                                          )
-                                          .orderBy('nombre'),
-                                ),
+                                stream: queryCategoriasRecord(),
                                 builder: (context, snapshot) {
                                   // Customize what your widget looks like when it's loading.
                                   if (!snapshot.hasData) {
