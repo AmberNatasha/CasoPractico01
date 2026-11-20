@@ -1,4 +1,4 @@
-import '/components/product_card3_widget.dart';
+import '/backend/backend.dart';
 import '/flutter_flow/ff_builtin_enums.dart';
 import '/flutter_flow/flutter_flow_icon_button.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
@@ -71,7 +71,12 @@ export 'productos_model.dart';
 /// conservando el resto de campos en una jerarquía secundaria legible. Mantén
 /// coherencia visual completa con las pantallas Login y Categorías.
 class ProductosWidget extends StatefulWidget {
-  const ProductosWidget({super.key});
+  const ProductosWidget({
+    super.key,
+    this.categoria,
+  });
+
+  final DocumentReference? categoria;
 
   static String routeName = 'Productos';
   static String routePath = '/productos';
@@ -268,115 +273,217 @@ class _ProductosWidgetState extends State<ProductosWidget> {
                             mainAxisAlignment: MainAxisAlignment.start,
                             crossAxisAlignment: CrossAxisAlignment.stretch,
                             children: [
-                              GridView(
-                                padding: EdgeInsets.zero,
-                                gridDelegate:
-                                    SliverGridDelegateWithFixedCrossAxisCount(
-                                  crossAxisCount: 2,
-                                  crossAxisSpacing: 16.0,
-                                  mainAxisSpacing: 16.0,
-                                  childAspectRatio: 0.62,
-                                ),
-                                primary: false,
-                                shrinkWrap: true,
-                                scrollDirection: Axis.vertical,
-                                children: [
-                                  wrapWithModel(
-                                    model: _model.productCardModel1,
-                                    updateCallback: () => safeSetState(() {}),
-                                    child: ProductCard3Widget(
-                                      imagen:
-                                          'https://dimg.dreamflow.cloud/v1/image/hair%20styling%20cream%20bottle%20minimalist',
-                                      disponible: true,
-                                      categoria: 'Cabello',
-                                      nombre: 'WakeUp',
-                                      descripcion:
-                                          'Crema para peinar hidratante',
-                                      precio: '8500',
-                                      fecha: '12 Oct',
-                                      usuario: 'Admin',
+                              StreamBuilder<List<ProductosRecord>>(
+                                stream: queryProductosRecord(),
+                                builder: (context, snapshot) {
+                                  // Customize what your widget looks like when it's loading.
+                                  if (!snapshot.hasData) {
+                                    return Center(
+                                      child: SizedBox(
+                                        width: 50.0,
+                                        height: 50.0,
+                                        child: CircularProgressIndicator(
+                                          valueColor:
+                                              AlwaysStoppedAnimation<Color>(
+                                            FlutterFlowTheme.of(context)
+                                                .primary,
+                                          ),
+                                        ),
+                                      ),
+                                    );
+                                  }
+                                  List<ProductosRecord>
+                                      gridProductosRecordList = snapshot.data!;
+
+                                  return GridView.builder(
+                                    padding: EdgeInsets.zero,
+                                    gridDelegate:
+                                        SliverGridDelegateWithFixedCrossAxisCount(
+                                      crossAxisCount: 2,
+                                      crossAxisSpacing: 16.0,
+                                      mainAxisSpacing: 16.0,
+                                      childAspectRatio: 0.62,
                                     ),
-                                  ),
-                                  wrapWithModel(
-                                    model: _model.productCardModel2,
-                                    updateCallback: () => safeSetState(() {}),
-                                    child: ProductCard3Widget(
-                                      imagen:
-                                          'https://dimg.dreamflow.cloud/v1/image/cosmetic%20serum%20dropper%20bottle',
-                                      disponible: true,
-                                      categoria: 'Cabello',
-                                      nombre: 'Sérum Vital',
-                                      descripcion:
-                                          'Reparación intensiva de puntas',
-                                      precio: '12000',
-                                      fecha: '10 Oct',
-                                      usuario: 'Elena B.',
-                                    ),
-                                  ),
-                                  wrapWithModel(
-                                    model: _model.productCardModel3,
-                                    updateCallback: () => safeSetState(() {}),
-                                    child: ProductCard3Widget(
-                                      imagen:
-                                          'https://dimg.dreamflow.cloud/v1/image/organic%20solid%20shampoo%20bar',
-                                      disponible: false,
-                                      categoria: 'Cabello',
-                                      nombre: 'Shampoo Sólido',
-                                      descripcion:
-                                          'Extracto de lavanda y romero',
-                                      precio: '6500',
-                                      fecha: '05 Oct',
-                                      usuario: '',
-                                    ),
-                                  ),
-                                  wrapWithModel(
-                                    model: _model.productCardModel4,
-                                    updateCallback: () => safeSetState(() {}),
-                                    child: ProductCard3Widget(
-                                      imagen:
-                                          'https://dimg.dreamflow.cloud/v1/image/argan%20oil%20hair%20product',
-                                      disponible: true,
-                                      categoria: 'Cabello',
-                                      nombre: 'Óleo de Argán',
-                                      descripcion: 'Brillo natural y sedosidad',
-                                      precio: '9800',
-                                      fecha: '01 Oct',
-                                      usuario: 'Admin',
-                                    ),
-                                  ),
-                                  wrapWithModel(
-                                    model: _model.productCardModel5,
-                                    updateCallback: () => safeSetState(() {}),
-                                    child: ProductCard3Widget(
-                                      imagen:
-                                          'https://dimg.dreamflow.cloud/v1/image/hair%20mask%20jar%20white%20cream',
-                                      disponible: true,
-                                      categoria: 'Cabello',
-                                      nombre: 'Mascarilla Karité',
-                                      descripcion:
-                                          'Nutrición profunda para rizos',
-                                      precio: '7200',
-                                      fecha: '28 Sep',
-                                      usuario: '',
-                                    ),
-                                  ),
-                                  wrapWithModel(
-                                    model: _model.productCardModel6,
-                                    updateCallback: () => safeSetState(() {}),
-                                    child: ProductCard3Widget(
-                                      imagen:
-                                          'https://dimg.dreamflow.cloud/v1/image/hair%20tonic%20spray%20bottle',
-                                      disponible: true,
-                                      categoria: 'Cabello',
-                                      nombre: 'Tónico Capilar',
-                                      descripcion:
-                                          'Fortalecimiento desde la raíz',
-                                      precio: '11000',
-                                      fecha: '25 Sep',
-                                      usuario: 'Elena B.',
-                                    ),
-                                  ),
-                                ],
+                                    primary: false,
+                                    shrinkWrap: true,
+                                    scrollDirection: Axis.vertical,
+                                    itemCount: gridProductosRecordList.length,
+                                    itemBuilder: (context, gridIndex) {
+                                      final gridProductosRecord =
+                                          gridProductosRecordList[gridIndex];
+                                      return Container(
+                                        width: 100.0,
+                                        height: 100.0,
+                                        decoration: BoxDecoration(
+                                          color: FlutterFlowTheme.of(context)
+                                              .secondaryBackground,
+                                        ),
+                                        child: Column(
+                                          mainAxisSize: MainAxisSize.max,
+                                          children: [
+                                            Text(
+                                              gridProductosRecord.imagenUrl,
+                                              style:
+                                                  FlutterFlowTheme.of(context)
+                                                      .bodyMedium
+                                                      .override(
+                                                        font: GoogleFonts.inter(
+                                                          fontWeight:
+                                                              FlutterFlowTheme.of(
+                                                                      context)
+                                                                  .bodyMedium
+                                                                  .fontWeight,
+                                                          fontStyle:
+                                                              FlutterFlowTheme.of(
+                                                                      context)
+                                                                  .bodyMedium
+                                                                  .fontStyle,
+                                                        ),
+                                                        letterSpacing: 0.0,
+                                                        fontWeight:
+                                                            FlutterFlowTheme.of(
+                                                                    context)
+                                                                .bodyMedium
+                                                                .fontWeight,
+                                                        fontStyle:
+                                                            FlutterFlowTheme.of(
+                                                                    context)
+                                                                .bodyMedium
+                                                                .fontStyle,
+                                                      ),
+                                            ),
+                                            Text(
+                                              gridProductosRecord.nombre,
+                                              style:
+                                                  FlutterFlowTheme.of(context)
+                                                      .bodyMedium
+                                                      .override(
+                                                        font: GoogleFonts.inter(
+                                                          fontWeight:
+                                                              FlutterFlowTheme.of(
+                                                                      context)
+                                                                  .bodyMedium
+                                                                  .fontWeight,
+                                                          fontStyle:
+                                                              FlutterFlowTheme.of(
+                                                                      context)
+                                                                  .bodyMedium
+                                                                  .fontStyle,
+                                                        ),
+                                                        letterSpacing: 0.0,
+                                                        fontWeight:
+                                                            FlutterFlowTheme.of(
+                                                                    context)
+                                                                .bodyMedium
+                                                                .fontWeight,
+                                                        fontStyle:
+                                                            FlutterFlowTheme.of(
+                                                                    context)
+                                                                .bodyMedium
+                                                                .fontStyle,
+                                                      ),
+                                            ),
+                                            Text(
+                                              gridProductosRecord.descripcion,
+                                              style:
+                                                  FlutterFlowTheme.of(context)
+                                                      .bodyMedium
+                                                      .override(
+                                                        font: GoogleFonts.inter(
+                                                          fontWeight:
+                                                              FlutterFlowTheme.of(
+                                                                      context)
+                                                                  .bodyMedium
+                                                                  .fontWeight,
+                                                          fontStyle:
+                                                              FlutterFlowTheme.of(
+                                                                      context)
+                                                                  .bodyMedium
+                                                                  .fontStyle,
+                                                        ),
+                                                        letterSpacing: 0.0,
+                                                        fontWeight:
+                                                            FlutterFlowTheme.of(
+                                                                    context)
+                                                                .bodyMedium
+                                                                .fontWeight,
+                                                        fontStyle:
+                                                            FlutterFlowTheme.of(
+                                                                    context)
+                                                                .bodyMedium
+                                                                .fontStyle,
+                                                      ),
+                                            ),
+                                            Text(
+                                              gridProductosRecord.precio
+                                                  .toString(),
+                                              style:
+                                                  FlutterFlowTheme.of(context)
+                                                      .bodyMedium
+                                                      .override(
+                                                        font: GoogleFonts.inter(
+                                                          fontWeight:
+                                                              FlutterFlowTheme.of(
+                                                                      context)
+                                                                  .bodyMedium
+                                                                  .fontWeight,
+                                                          fontStyle:
+                                                              FlutterFlowTheme.of(
+                                                                      context)
+                                                                  .bodyMedium
+                                                                  .fontStyle,
+                                                        ),
+                                                        letterSpacing: 0.0,
+                                                        fontWeight:
+                                                            FlutterFlowTheme.of(
+                                                                    context)
+                                                                .bodyMedium
+                                                                .fontWeight,
+                                                        fontStyle:
+                                                            FlutterFlowTheme.of(
+                                                                    context)
+                                                                .bodyMedium
+                                                                .fontStyle,
+                                                      ),
+                                            ),
+                                            Text(
+                                              gridProductosRecord.disponible
+                                                  .toString(),
+                                              style:
+                                                  FlutterFlowTheme.of(context)
+                                                      .bodyMedium
+                                                      .override(
+                                                        font: GoogleFonts.inter(
+                                                          fontWeight:
+                                                              FlutterFlowTheme.of(
+                                                                      context)
+                                                                  .bodyMedium
+                                                                  .fontWeight,
+                                                          fontStyle:
+                                                              FlutterFlowTheme.of(
+                                                                      context)
+                                                                  .bodyMedium
+                                                                  .fontStyle,
+                                                        ),
+                                                        letterSpacing: 0.0,
+                                                        fontWeight:
+                                                            FlutterFlowTheme.of(
+                                                                    context)
+                                                                .bodyMedium
+                                                                .fontWeight,
+                                                        fontStyle:
+                                                            FlutterFlowTheme.of(
+                                                                    context)
+                                                                .bodyMedium
+                                                                .fontStyle,
+                                                      ),
+                                            ),
+                                          ],
+                                        ),
+                                      );
+                                    },
+                                  );
+                                },
                               ),
                             ].divide(SizedBox(height: 16.0)),
                           ),

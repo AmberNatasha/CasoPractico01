@@ -11,30 +11,26 @@ class ProductCard3Widget extends StatefulWidget {
     super.key,
     String? imagen,
     bool? disponible,
-    String? categoria,
+    this.categoria,
     String? nombre,
     String? descripcion,
-    String? precio,
-    String? fecha,
-    String? usuario,
+    this.precio,
+    this.fecha,
+    this.usuario,
   })  : this.imagen = imagen ??
             'https://dimg.dreamflow.cloud/v1/image/hair%20styling%20cream%20bottle%20minimalist',
         this.disponible = disponible ?? true,
-        this.categoria = categoria ?? 'Cabello',
         this.nombre = nombre ?? 'WakeUp',
-        this.descripcion = descripcion ?? 'Crema para peinar hidratante',
-        this.precio = precio ?? '8500',
-        this.fecha = fecha ?? '12 Oct',
-        this.usuario = usuario ?? 'Admin';
+        this.descripcion = descripcion ?? 'Crema para peinar hidratante';
 
   final String imagen;
   final bool disponible;
-  final String categoria;
+  final DocumentReference? categoria;
   final String nombre;
   final String descripcion;
-  final String precio;
-  final String fecha;
-  final String usuario;
+  final double? precio;
+  final DateTime? fecha;
+  final DocumentReference? usuario;
 
   @override
   State<ProductCard3Widget> createState() => _ProductCard3WidgetState();
@@ -182,8 +178,8 @@ class _ProductCard3WidgetState extends State<ProductCard3Widget> {
                     children: [
                       Text(
                         valueOrDefault<String>(
-                          widget.categoria,
-                          'Cabello',
+                          widget.categoria?.id,
+                          '2',
                         ),
                         style: FlutterFlowTheme.of(context).labelSmall.override(
                               font: GoogleFonts.inter(
@@ -262,7 +258,7 @@ class _ProductCard3WidgetState extends State<ProductCard3Widget> {
                           children: [
                             Text(
                               valueOrDefault<String>(
-                                '₡${widget.precio}',
+                                '₡${widget.precio?.toString()}',
                                 '₡8500',
                               ),
                               style: FlutterFlowTheme.of(context)
@@ -293,7 +289,7 @@ class _ProductCard3WidgetState extends State<ProductCard3Widget> {
                         children: [
                           Text(
                             valueOrDefault<String>(
-                              'Agregado: ${widget.fecha}',
+                              'Agregado: ${widget.fecha?.toString()}',
                               'Agregado: 12 Oct',
                             ),
                             style: FlutterFlowTheme.of(context)
@@ -319,50 +315,31 @@ class _ProductCard3WidgetState extends State<ProductCard3Widget> {
                                   lineHeight: 1.4,
                                 ),
                           ),
-                          if (valueOrDefault<bool>(
-                            valueOrDefault<String>(
-                                      widget.usuario,
-                                      'Admin',
-                                    ) !=
-                                    ''
-                                ? true
-                                : false,
-                            true,
-                          ))
-                            Text(
-                              valueOrDefault<String>(
-                                valueOrDefault<String>(
-                                          widget.usuario,
-                                          'Admin',
-                                        ) !=
-                                        ''
-                                    ? 'Por: \$usuario'
-                                    : '',
-                                'Por: \$usuario',
-                              ),
-                              style: FlutterFlowTheme.of(context)
-                                  .labelSmall
-                                  .override(
-                                    font: GoogleFonts.inter(
-                                      fontWeight: FlutterFlowTheme.of(context)
-                                          .labelSmall
-                                          .fontWeight,
-                                      fontStyle: FlutterFlowTheme.of(context)
-                                          .labelSmall
-                                          .fontStyle,
-                                    ),
-                                    color: FlutterFlowTheme.of(context).accent3,
-                                    fontSize: 9.0,
-                                    letterSpacing: 0.0,
+                          Text(
+                            'Por: Amber Bustos',
+                            style: FlutterFlowTheme.of(context)
+                                .labelSmall
+                                .override(
+                                  font: GoogleFonts.inter(
                                     fontWeight: FlutterFlowTheme.of(context)
                                         .labelSmall
                                         .fontWeight,
                                     fontStyle: FlutterFlowTheme.of(context)
                                         .labelSmall
                                         .fontStyle,
-                                    lineHeight: 1.4,
                                   ),
-                            ),
+                                  color: FlutterFlowTheme.of(context).accent3,
+                                  fontSize: 9.0,
+                                  letterSpacing: 0.0,
+                                  fontWeight: FlutterFlowTheme.of(context)
+                                      .labelSmall
+                                      .fontWeight,
+                                  fontStyle: FlutterFlowTheme.of(context)
+                                      .labelSmall
+                                      .fontStyle,
+                                  lineHeight: 1.4,
+                                ),
+                          ),
                         ].divide(SizedBox(height: 0.0)),
                       ),
                       Container(

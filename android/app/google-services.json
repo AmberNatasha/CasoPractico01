@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "400441711622",
+    "project_id": "amberbustosaraya-66851",
+    "storage_bucket": "amberbustosaraya-66851.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:400441711622:android:2947d16512e460ed98b787",
+        "android_client_info": {
+          "package_name": "com.mycompany.amberbustosaraya"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAxjF2iCuTdhojUD68zjMek2AqZdu_y1fA"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

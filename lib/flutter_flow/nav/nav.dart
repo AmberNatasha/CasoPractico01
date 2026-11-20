@@ -33,12 +33,12 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
       debugLogDiagnostics: true,
       refreshListenable: appStateNotifier,
       navigatorKey: appNavigatorKey,
-      errorBuilder: (context, state) => Widget(),
+      errorBuilder: (context, state) => LoginWidget(),
       routes: [
         FFRoute(
           name: '_initialize',
           path: '/',
-          builder: (context, _) => Widget(),
+          builder: (context, _) => LoginWidget(),
         ),
         FFRoute(
           name: LoginWidget.routeName,
@@ -48,7 +48,19 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
         FFRoute(
           name: ProductosWidget.routeName,
           path: ProductosWidget.routePath,
-          builder: (context, params) => ProductosWidget(),
+          builder: (context, params) => ProductosWidget(
+            categoria: params.getParam(
+              'categoria',
+              ParamType.DocumentReference,
+              isList: false,
+              collectionNamePath: ['Categorias'],
+            ),
+          ),
+        ),
+        FFRoute(
+          name: CategoriasWidget.routeName,
+          path: CategoriasWidget.routePath,
+          builder: (context, params) => CategoriasWidget(),
         )
       ].map((r) => r.toRoute(appStateNotifier)).toList(),
     );
@@ -120,6 +132,7 @@ class FFParameters {
     String paramName,
     ParamType type, {
     bool isList = false,
+    List<String>? collectionNamePath,
   }) {
     if (futureParamValues.containsKey(paramName)) {
       return futureParamValues[paramName];
@@ -137,6 +150,7 @@ class FFParameters {
       param,
       type,
       isList,
+      collectionNamePath: collectionNamePath,
     );
   }
 }

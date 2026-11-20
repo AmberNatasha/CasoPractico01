@@ -198,106 +198,87 @@ class _LoginWidgetState extends State<LoginWidget> {
               Padding(
                 padding: EdgeInsetsDirectional.fromSTEB(20.0, 0.0, 20.0, 40.0),
                 child: Container(
-                  child: Container(
-                    decoration: BoxDecoration(
-                      color: Color(0xFFFCF9F6),
-                      boxShadow: [
-                        BoxShadow(
-                          blurRadius: 30.0,
-                          color: Color(0x1A383333),
-                          offset: Offset(
-                            0.0,
-                            10.0,
-                          ),
-                          spreadRadius: 0.0,
-                        )
-                      ],
-                      borderRadius: BorderRadius.circular(32.0),
-                      shape: BoxShape.rectangle,
-                    ),
-                    child: Padding(
-                      padding: EdgeInsets.all(24.0),
-                      child: Container(
-                        child: Column(
-                          mainAxisSize: MainAxisSize.min,
-                          mainAxisAlignment: MainAxisAlignment.start,
-                          crossAxisAlignment: CrossAxisAlignment.stretch,
-                          children: [
-                            Row(
-                              mainAxisSize: MainAxisSize.max,
-                              mainAxisAlignment: MainAxisAlignment.start,
-                              crossAxisAlignment: CrossAxisAlignment.center,
-                              children: [
-                                Expanded(
-                                  flex: 1,
-                                  child: wrapWithModel(
-                                    model: _model.authTabModel1,
-                                    updateCallback: () => safeSetState(() {}),
-                                    child: AuthTabWidget(
-                                      label: 'Crear Cuenta',
-                                      active: true,
-                                    ),
-                                  ),
-                                ),
-                                Expanded(
-                                  flex: 1,
-                                  child: wrapWithModel(
-                                    model: _model.authTabModel2,
-                                    updateCallback: () => safeSetState(() {}),
-                                    child: AuthTabWidget(
-                                      label: 'Ingresar',
-                                      active: false,
-                                    ),
-                                  ),
-                                ),
-                              ].divide(SizedBox(width: 0.0)),
+                  child: Padding(
+                    padding:
+                        EdgeInsetsDirectional.fromSTEB(0.0, 45.0, 0.0, 45.0),
+                    child: Container(
+                      decoration: BoxDecoration(
+                        color: Color(0xFFFCF9F6),
+                        boxShadow: [
+                          BoxShadow(
+                            blurRadius: 30.0,
+                            color: Color(0x1A383333),
+                            offset: Offset(
+                              0.0,
+                              10.0,
                             ),
-                            Text(
-                              'Al continuar, aceptas nuestra Política de Privacidad y Términos de Uso.',
-                              textAlign: TextAlign.center,
-                              style: FlutterFlowTheme.of(context)
-                                  .labelSmall
-                                  .override(
-                                    font: GoogleFonts.inter(
-                                      fontWeight: FlutterFlowTheme.of(context)
-                                          .labelSmall
-                                          .fontWeight,
-                                      fontStyle: FlutterFlowTheme.of(context)
-                                          .labelSmall
-                                          .fontStyle,
-                                    ),
-                                    color: Color(0x99383333),
-                                    letterSpacing: 0.0,
-                                    fontWeight: FlutterFlowTheme.of(context)
-                                        .labelSmall
-                                        .fontWeight,
-                                    fontStyle: FlutterFlowTheme.of(context)
-                                        .labelSmall
-                                        .fontStyle,
-                                    lineHeight: 1.4,
+                            spreadRadius: 0.0,
+                          )
+                        ],
+                        borderRadius: BorderRadius.circular(32.0),
+                        shape: BoxShape.rectangle,
+                      ),
+                      child: Column(
+                        mainAxisSize: MainAxisSize.max,
+                        children: [
+                          Padding(
+                            padding: EdgeInsets.all(24.0),
+                            child: Container(
+                              child: Column(
+                                mainAxisSize: MainAxisSize.min,
+                                mainAxisAlignment: MainAxisAlignment.start,
+                                crossAxisAlignment: CrossAxisAlignment.stretch,
+                                children: [
+                                  Row(
+                                    mainAxisSize: MainAxisSize.max,
+                                    mainAxisAlignment: MainAxisAlignment.start,
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.center,
+                                    children: [
+                                      Expanded(
+                                        flex: 1,
+                                        child: wrapWithModel(
+                                          model: _model.authTabModel1,
+                                          updateCallback: () =>
+                                              safeSetState(() {}),
+                                          child: AuthTabWidget(
+                                            label: 'Crear Cuenta',
+                                            active: true,
+                                          ),
+                                        ),
+                                      ),
+                                      Expanded(
+                                        flex: 1,
+                                        child: wrapWithModel(
+                                          model: _model.authTabModel2,
+                                          updateCallback: () =>
+                                              safeSetState(() {}),
+                                          child: AuthTabWidget(
+                                            label: 'Ingresar',
+                                            active: false,
+                                          ),
+                                        ),
+                                      ),
+                                    ].divide(SizedBox(width: 0.0)),
                                   ),
-                            ),
-                            Row(
-                              mainAxisSize: MainAxisSize.max,
-                              mainAxisAlignment: MainAxisAlignment.start,
-                              crossAxisAlignment: CrossAxisAlignment.center,
-                              children: [
-                                Expanded(
-                                  flex: 1,
-                                  child: Divider(
-                                    height: 16.0,
-                                    thickness: 1.0,
-                                    indent: 0.0,
-                                    endIndent: 0.0,
-                                    color: Color(0x66D9A8AA),
-                                  ),
-                                ),
-                                Text(
-                                  'O ingrese con',
-                                  style: FlutterFlowTheme.of(context)
-                                      .labelSmall
-                                      .override(
-                                        font: GoogleFonts.inter(
+                                  Text(
+                                    'Al continuar, aceptas nuestra Política de Privacidad y Términos de Uso.',
+                                    textAlign: TextAlign.center,
+                                    style: FlutterFlowTheme.of(context)
+                                        .labelSmall
+                                        .override(
+                                          font: GoogleFonts.inter(
+                                            fontWeight:
+                                                FlutterFlowTheme.of(context)
+                                                    .labelSmall
+                                                    .fontWeight,
+                                            fontStyle:
+                                                FlutterFlowTheme.of(context)
+                                                    .labelSmall
+                                                    .fontStyle,
+                                          ),
+                                          color: Color(0x99383333),
+                                          letterSpacing: 0.0,
                                           fontWeight:
                                               FlutterFlowTheme.of(context)
                                                   .labelSmall
@@ -306,110 +287,155 @@ class _LoginWidgetState extends State<LoginWidget> {
                                               FlutterFlowTheme.of(context)
                                                   .labelSmall
                                                   .fontStyle,
+                                          lineHeight: 1.4,
                                         ),
-                                        color: Color(0x80383333),
-                                        letterSpacing: 0.0,
-                                        fontWeight: FlutterFlowTheme.of(context)
-                                            .labelSmall
-                                            .fontWeight,
-                                        fontStyle: FlutterFlowTheme.of(context)
-                                            .labelSmall
-                                            .fontStyle,
-                                        lineHeight: 1.4,
-                                      ),
-                                ),
-                                Expanded(
-                                  flex: 1,
-                                  child: Divider(
-                                    height: 16.0,
-                                    thickness: 1.0,
-                                    indent: 0.0,
-                                    endIndent: 0.0,
-                                    color: Color(0x66D9A8AA),
                                   ),
-                                ),
-                              ].divide(SizedBox(width: 16.0)),
-                            ),
-                            Container(
-                              decoration: BoxDecoration(
-                                borderRadius: BorderRadius.circular(24.0),
-                                shape: BoxShape.rectangle,
-                                border: Border.all(
-                                  color: Color(0xFFD9A8AA),
-                                  width: 1.0,
-                                ),
-                              ),
-                              child: Padding(
-                                padding: EdgeInsets.all(16.0),
-                                child: Container(
-                                  child: Container(
-                                    alignment: AlignmentDirectional(0.0, 0.0),
-                                    child: Row(
-                                      mainAxisSize: MainAxisSize.min,
-                                      mainAxisAlignment:
-                                          MainAxisAlignment.start,
-                                      crossAxisAlignment:
-                                          CrossAxisAlignment.center,
-                                      children: [
-                                        SvgPicture.network(
-                                          'https://cdn.simpleicons.org/google/383333.svg',
-                                          width: 18.0,
-                                          height: 18.0,
-                                          fit: BoxFit.contain,
+                                  Row(
+                                    mainAxisSize: MainAxisSize.max,
+                                    mainAxisAlignment: MainAxisAlignment.start,
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.center,
+                                    children: [
+                                      Expanded(
+                                        flex: 1,
+                                        child: Divider(
+                                          height: 16.0,
+                                          thickness: 1.0,
+                                          indent: 0.0,
+                                          endIndent: 0.0,
+                                          color: Color(0x66D9A8AA),
                                         ),
-                                        Text(
-                                          'Continuar con Google',
-                                          style: FlutterFlowTheme.of(context)
-                                              .labelLarge
-                                              .override(
-                                                font: GoogleFonts.inter(
-                                                  fontWeight: FontWeight.w500,
-                                                  fontStyle:
-                                                      FlutterFlowTheme.of(
-                                                              context)
-                                                          .labelLarge
-                                                          .fontStyle,
-                                                ),
-                                                color: Color(0xFF383333),
-                                                letterSpacing: 0.0,
-                                                fontWeight: FontWeight.w500,
+                                      ),
+                                      Text(
+                                        'O ingrese con',
+                                        style: FlutterFlowTheme.of(context)
+                                            .labelSmall
+                                            .override(
+                                              font: GoogleFonts.inter(
+                                                fontWeight:
+                                                    FlutterFlowTheme.of(context)
+                                                        .labelSmall
+                                                        .fontWeight,
                                                 fontStyle:
                                                     FlutterFlowTheme.of(context)
-                                                        .labelLarge
+                                                        .labelSmall
                                                         .fontStyle,
-                                                lineHeight: 1.4,
                                               ),
+                                              color: Color(0x80383333),
+                                              letterSpacing: 0.0,
+                                              fontWeight:
+                                                  FlutterFlowTheme.of(context)
+                                                      .labelSmall
+                                                      .fontWeight,
+                                              fontStyle:
+                                                  FlutterFlowTheme.of(context)
+                                                      .labelSmall
+                                                      .fontStyle,
+                                              lineHeight: 1.4,
+                                            ),
+                                      ),
+                                      Expanded(
+                                        flex: 1,
+                                        child: Divider(
+                                          height: 16.0,
+                                          thickness: 1.0,
+                                          indent: 0.0,
+                                          endIndent: 0.0,
+                                          color: Color(0x66D9A8AA),
                                         ),
-                                      ].divide(SizedBox(width: 8.0)),
+                                      ),
+                                    ].divide(SizedBox(width: 16.0)),
+                                  ),
+                                  Container(
+                                    decoration: BoxDecoration(
+                                      borderRadius: BorderRadius.circular(24.0),
+                                      shape: BoxShape.rectangle,
+                                      border: Border.all(
+                                        color: Color(0xFFD9A8AA),
+                                        width: 1.0,
+                                      ),
+                                    ),
+                                    child: Padding(
+                                      padding: EdgeInsets.all(16.0),
+                                      child: Container(
+                                        child: Container(
+                                          alignment:
+                                              AlignmentDirectional(0.0, 0.0),
+                                          child: Row(
+                                            mainAxisSize: MainAxisSize.min,
+                                            mainAxisAlignment:
+                                                MainAxisAlignment.start,
+                                            crossAxisAlignment:
+                                                CrossAxisAlignment.center,
+                                            children: [
+                                              SvgPicture.network(
+                                                'https://cdn.simpleicons.org/google/383333.svg',
+                                                width: 18.0,
+                                                height: 18.0,
+                                                fit: BoxFit.contain,
+                                              ),
+                                              Text(
+                                                'Continuar con Google',
+                                                style: FlutterFlowTheme.of(
+                                                        context)
+                                                    .labelLarge
+                                                    .override(
+                                                      font: GoogleFonts.inter(
+                                                        fontWeight:
+                                                            FontWeight.w500,
+                                                        fontStyle:
+                                                            FlutterFlowTheme.of(
+                                                                    context)
+                                                                .labelLarge
+                                                                .fontStyle,
+                                                      ),
+                                                      color: Color(0xFF383333),
+                                                      letterSpacing: 0.0,
+                                                      fontWeight:
+                                                          FontWeight.w500,
+                                                      fontStyle:
+                                                          FlutterFlowTheme.of(
+                                                                  context)
+                                                              .labelLarge
+                                                              .fontStyle,
+                                                      lineHeight: 1.4,
+                                                    ),
+                                              ),
+                                            ].divide(SizedBox(width: 8.0)),
+                                          ),
+                                        ),
+                                      ),
                                     ),
                                   ),
-                                ),
+                                  Text(
+                                    '¿Olvidaste tu contraseña?',
+                                    textAlign: TextAlign.center,
+                                    style: FlutterFlowTheme.of(context)
+                                        .labelMedium
+                                        .override(
+                                          font: GoogleFonts.inter(
+                                            fontWeight: FontWeight.w500,
+                                            fontStyle:
+                                                FlutterFlowTheme.of(context)
+                                                    .labelMedium
+                                                    .fontStyle,
+                                          ),
+                                          color: Color(0xFF8A4357),
+                                          letterSpacing: 0.0,
+                                          fontWeight: FontWeight.w500,
+                                          fontStyle:
+                                              FlutterFlowTheme.of(context)
+                                                  .labelMedium
+                                                  .fontStyle,
+                                          decoration: TextDecoration.underline,
+                                          lineHeight: 1.4,
+                                        ),
+                                  ),
+                                ].divide(SizedBox(height: 24.0)),
                               ),
                             ),
-                            Text(
-                              '¿Olvidaste tu contraseña?',
-                              textAlign: TextAlign.center,
-                              style: FlutterFlowTheme.of(context)
-                                  .labelMedium
-                                  .override(
-                                    font: GoogleFonts.inter(
-                                      fontWeight: FontWeight.w500,
-                                      fontStyle: FlutterFlowTheme.of(context)
-                                          .labelMedium
-                                          .fontStyle,
-                                    ),
-                                    color: Color(0xFF8A4357),
-                                    letterSpacing: 0.0,
-                                    fontWeight: FontWeight.w500,
-                                    fontStyle: FlutterFlowTheme.of(context)
-                                        .labelMedium
-                                        .fontStyle,
-                                    decoration: TextDecoration.underline,
-                                    lineHeight: 1.4,
-                                  ),
-                            ),
-                          ].divide(SizedBox(height: 24.0)),
-                        ),
+                          ),
+                        ],
                       ),
                     ),
                   ),
